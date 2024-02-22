@@ -18,8 +18,17 @@ namespace Inheritance
             };
             foreach (Person person in persons)
                 Console.WriteLine(person.FirstName);
+
+            // Referans çalışması
+            Person person1 = new Person();
+            Student student1 = new Student() { ID = 1, FirstName = "kamil", LastName = "bahram" };
+            student1.StudentNuber = 4;
+            person1 = student1;  // student1 in referans gözterdiği hafızada person1 değerlerini kayıt edebilir.
             
-            Console.ReadLine(); 
+            // student1 = person1; bu şeklde eşitleme uygun olmaz
+            student1 = person1 as Student; // burdaki çalışma bicimini sorgula
+            Console.WriteLine(person1.ID + ": " + person1.FirstName);
+            Console.ReadLine();
         }
     }
     class Person
@@ -30,6 +39,7 @@ namespace Inheritance
     }
     class Student : Person
     {
+        public int StudentNuber { get; set; }
 
     }
     class Customer : Person
